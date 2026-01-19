@@ -5,6 +5,11 @@ O projeto foi desenvolvido como desafio técnico, priorizando legibilidade, desa
 
 ---
 
+<img width="200" height="400" alt="image" src="https://github.com/user-attachments/assets/05d994a8-1d41-4612-a9ad-8dba98004040" />
+<img width="200" height="400" alt="image" src="https://github.com/user-attachments/assets/ba7e92ef-f46a-419e-88f3-52c73cb500b0" />
+<img width="200" height="400" alt="image" src="https://github.com/user-attachments/assets/342d95df-4fe2-4ef0-9c84-5c1d74e40694" />
+
+
 ## 🚀 Instruções de Build & Execução
 
 ### 🧰 Pré-requisitos
@@ -60,36 +65,20 @@ O projeto segue as regras da Very Good Analysis, garantindo consistência e boas
 
 ### 🧱 Estrutura de Pastas
 
-lib/
-├── core/
-├── data/
-│ ├── models/
-│ │ ├── dish_model.dart
-│ │ ├── dish_model.g.dart
-│ │ ├── restaurant_model.dart
-│ │ └── restaurant_model.g.dart
-│ ├── repositories/
-│ │ └── food_repository.dart
-│ └── sources/
-│ ├── fake_remote_source.dart
-│ └── local_json_source.dart
-├── domain/
-│ ├── entities/
-│ └── usecases/
-├── presentation/
-│ ├── pages/
-│ │ ├── favorites_page.dart
-│ │ ├── home_page.dart
-│ │ ├── restaurant_detail_page.dart
-│ │ └── restaurants_page.dart
-│ ├── providers/
-│ │ ├── paginated_restaurants_provider.dart
-│ │ ├── providers.dart
-│ │ └── theme_provider.dart
-│ └── widgets/
-│ ├── dish_tile.dart
-│ └── restaurant_card.dart
-└── main.dart
+```
+📁 lib/
+ ┣ 📂 core/
+ ┣ 📂 data/
+ ┃ ┣ 📂 models/
+ ┃ ┣ 📂 repositories/
+ ┃ ┗ 📂 sources/
+ ┣ 📂 domain/
+ ┣ 📂 presentation/
+ ┃ ┣ 📂 pages/
+ ┃ ┣ 📂 providers/
+ ┃ ┗ 📂 widgets/
+ ┗ 📄 main.dart
+```
 
 ### ⚙️ Integração Contínua (CI)
 
