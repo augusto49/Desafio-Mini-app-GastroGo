@@ -17,7 +17,7 @@ class FakeRemoteSource {
 
   /// Simula um fetch remoto de restaurantes
   Future<List<RestaurantModel>> fetchRestaurants() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future<void>.delayed(const Duration(seconds: 2));
 
     // Até 2 falhas simuladas no total
     if (_restaurantFailures < 2 && _random.nextDouble() < 0.3) {
@@ -34,7 +34,7 @@ class FakeRemoteSource {
 
   /// Simula um fetch remoto de pratos
   Future<List<DishModel>> fetchDishes() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(const Duration(seconds: 1));
 
     // Até 1 falha simulada no total
     if (_dishFailures < 1 && _random.nextDouble() < 0.25) {

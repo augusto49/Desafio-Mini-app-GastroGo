@@ -30,7 +30,7 @@ class RestaurantSearchBar extends StatelessWidget {
                 border: Border.all(color: Colors.grey.shade200),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withValues(alpha: 0.1),
                     offset: const Offset(0, 4),
                     blurRadius: 12,
                   ),
@@ -59,7 +59,7 @@ class RestaurantSearchBar extends StatelessWidget {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide(
-                      color: color.withOpacity(0.5),
+                      color: color.withValues(alpha: 0.5),
                       width: 1.5,
                     ),
                   ),
@@ -80,8 +80,9 @@ class RestaurantSearchBar extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: (isFiltersVisible ? color : Colors.black)
-                        .withOpacity(0.1),
+                    color: (isFiltersVisible ? color : Colors.black).withValues(
+                      alpha: 0.1,
+                    ),
                     offset: const Offset(0, 4),
                     blurRadius: 10,
                   ),

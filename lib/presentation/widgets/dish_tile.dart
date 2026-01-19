@@ -19,7 +19,7 @@ class DishTile extends ConsumerWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             offset: const Offset(0, 4),
             blurRadius: 10,
           ),
@@ -76,7 +76,8 @@ class DishTile extends ConsumerWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'R\$ ${dish.price.toStringAsFixed(2)} • ${dish.vegan ? "Vegano" : "Não vegano"}',
+                        'R\$ ${dish.price.toStringAsFixed(2)} • '
+                        '${dish.vegan ? "Vegano" : "Não vegano"}',
                         style: TextStyle(
                           fontSize: 13,
                           color: Colors.grey[600],

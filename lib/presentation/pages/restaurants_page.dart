@@ -25,7 +25,8 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
     final asyncRestaurants = ref.watch(paginatedRestaurantsProvider);
     final notifier = ref.read(paginatedRestaurantsProvider.notifier);
 
-    // Escuta erros de paginação (quando já tem dados mas falhou ao carregar mais)
+    // Escuta erros de paginação
+    // (quando já tem dados mas falhou ao carregar mais)
     ref.listen(paginatedRestaurantsProvider, (previous, next) {
       if (!next.isLoading && next.hasError && next.hasValue) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -58,8 +59,7 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
         ),
         Expanded(
           child: asyncRestaurants.when(
-            skipError:
-                true, // Mantém a lista visível mesmo com erro na paginação
+            skipError: true,
             loading:
                 () => ListView.builder(
                   padding: const EdgeInsets.all(16),

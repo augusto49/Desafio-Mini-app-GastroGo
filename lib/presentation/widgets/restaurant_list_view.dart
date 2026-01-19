@@ -45,7 +45,7 @@ class RestaurantListView extends StatelessWidget {
               restaurant: restaurant,
               onTap:
                   () => Navigator.of(context).push(
-                    MaterialPageRoute(
+                    MaterialPageRoute<void>(
                       builder:
                           (_) => RestaurantDetailPage(restaurant: restaurant),
                     ),

@@ -24,7 +24,9 @@ class RestaurantMenuSection extends ConsumerWidget {
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.9),
+              color: Theme.of(
+                context,
+              ).colorScheme.primary.withValues(alpha: 0.9),
             ),
           ),
         ),
@@ -35,13 +37,13 @@ class RestaurantMenuSection extends ConsumerWidget {
           child: dishesAsync.when(
             loading:
                 () => const Padding(
-                  padding: EdgeInsets.all(32.0),
+                  padding: EdgeInsets.all(32),
                   child: Center(child: CircularProgressIndicator()),
                 ),
             error:
                 (e, _) => Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding: const EdgeInsets.all(24),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

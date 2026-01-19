@@ -58,7 +58,7 @@ class FavoritesPage extends ConsumerWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: colorScheme.primary.withOpacity(0.9),
+                      color: colorScheme.primary.withValues(alpha: 0.9),
                     ),
                   ),
                 ),
@@ -96,7 +96,7 @@ class FavoritesPage extends ConsumerWidget {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
+                                MaterialPageRoute<void>(
                                   builder:
                                       (_) => RestaurantDetailPage(
                                         restaurant: r,
@@ -121,7 +121,7 @@ class FavoritesPage extends ConsumerWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: colorScheme.primary.withOpacity(0.9),
+                      color: colorScheme.primary.withValues(alpha: 0.9),
                     ),
                   ),
                 ),
@@ -170,7 +170,7 @@ class FavoritesPage extends ConsumerWidget {
                                         );
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(
+                                          MaterialPageRoute<void>(
                                             builder:
                                                 (_) => RestaurantDetailPage(
                                                   restaurant: rest,
@@ -183,7 +183,8 @@ class FavoritesPage extends ConsumerWidget {
                                         ).showSnackBar(
                                           const SnackBar(
                                             content: Text(
-                                              'Restaurante do prato não encontrado.',
+                                              'Restaurante do prato '
+                                              'não encontrado.',
                                             ),
                                           ),
                                         );

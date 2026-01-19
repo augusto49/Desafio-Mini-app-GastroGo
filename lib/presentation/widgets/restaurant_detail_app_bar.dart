@@ -23,7 +23,7 @@ class RestaurantDetailAppBar extends ConsumerWidget {
       leading: Padding(
         padding: const EdgeInsets.all(6),
         child: CircleAvatar(
-          backgroundColor: Colors.black.withOpacity(0.4),
+          backgroundColor: Colors.black.withValues(alpha: 0.4),
           child: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.pop(context),

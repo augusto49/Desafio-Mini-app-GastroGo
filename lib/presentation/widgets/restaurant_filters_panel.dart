@@ -27,7 +27,7 @@ class RestaurantFiltersPanel extends StatelessWidget {
           isVisible
               ? Container(
                 width: double.infinity,
-                color: Colors.grey[50], // Fundo sutil para destacar a área
+                color: Colors.grey[50],
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +69,7 @@ class RestaurantFiltersPanel extends StatelessWidget {
                                   onSelected: (bool selected) {
                                     onCategoryChanged(c);
                                   },
-                                  selectedColor: color.withOpacity(0.2),
+                                  selectedColor: color.withValues(alpha: 0.2),
                                   checkmarkColor: color,
                                   labelStyle: TextStyle(
                                     color: isSelected ? color : Colors.black87,
@@ -152,7 +152,7 @@ class RestaurantFiltersPanel extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         decoration: BoxDecoration(
-          color: isSelected ? activeColor.withOpacity(0.1) : Colors.white,
+          color: isSelected ? activeColor.withValues(alpha: 0.1) : Colors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isSelected ? activeColor : Colors.grey.shade300,

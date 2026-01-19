@@ -53,7 +53,7 @@ class FavoriteButton extends ConsumerWidget {
               width: size,
               height: size,
               child: Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(2),
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
                   color: loadingColor,

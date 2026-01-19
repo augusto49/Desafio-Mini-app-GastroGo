@@ -17,7 +17,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50], // Lighter background for contrast
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: const Text(
           'GastroGo',
@@ -26,7 +26,9 @@ class _HomePageState extends ConsumerState<HomePage> {
         centerTitle: false,
         elevation: 0,
         backgroundColor: Colors.transparent,
-        foregroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
+        foregroundColor: Theme.of(
+          context,
+        ).colorScheme.primary.withValues(alpha: 0.8),
       ),
       body: IndexedStack(index: _index, children: pages),
       bottomNavigationBar: NavigationBar(
