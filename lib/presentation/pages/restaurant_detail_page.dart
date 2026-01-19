@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gastrogo/core/responsive_utils.dart';
 import 'package:gastrogo/domain/entities/restaurant.dart';
 import 'package:gastrogo/presentation/providers/providers.dart';
 import 'package:gastrogo/presentation/widgets/restaurant_detail_app_bar.dart';
@@ -17,6 +18,8 @@ class RestaurantDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLargeScreen = !ResponsiveUtils.isPhone(context);
+
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: RefreshIndicator(
@@ -34,15 +37,22 @@ class RestaurantDetailPage extends ConsumerWidget {
 
             // --- Corpo Principal ---
             SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // --- Info Card ---
-                  RestaurantInfoCard(restaurant: restaurant),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: isLargeScreen ? 900 : double.infinity,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // --- Info Card ---
+                      RestaurantInfoCard(restaurant: restaurant),
 
-                  // --- Menu ---
-                  RestaurantMenuSection(restaurant: restaurant),
-                ],
+                      // --- Menu ---
+                      RestaurantMenuSection(restaurant: restaurant),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
