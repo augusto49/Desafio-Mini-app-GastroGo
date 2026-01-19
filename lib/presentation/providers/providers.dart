@@ -2,8 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gastrogo/data/models/dish_model.dart';
-import 'package:gastrogo/data/models/restaurant_model.dart';
+import 'package:gastrogo/domain/entities/dish.dart';
+import 'package:gastrogo/domain/entities/restaurant.dart';
+import 'package:gastrogo/domain/usecases/get_dishes.dart';
+import 'package:gastrogo/domain/usecases/get_restaurants.dart';
+import 'package:gastrogo/domain/usecases/get_restaurants_paginated.dart';
 import 'package:gastrogo/data/repositories/food_repository.dart';
 import 'package:gastrogo/data/sources/fake_remote_source.dart';
 import 'package:gastrogo/data/sources/local_json_source.dart';
@@ -22,18 +25,29 @@ final foodRepoProvider = Provider(
   (ref) => FoodRepository(source: ref.read(fakeRemoteSourceProvider)),
 );
 
+/// UseCases
+final getRestaurantsProvider = Provider(
+  (ref) => GetRestaurants(ref.read(foodRepoProvider)),
+);
+final getDishesProvider = Provider(
+  (ref) => GetDishes(ref.read(foodRepoProvider)),
+);
+final getPaginatedRestaurantsProvider = Provider(
+  (ref) => GetPaginatedRestaurants(ref.read(foodRepoProvider)),
+);
+
 /// Restaurantes assíncronos
-final restaurantsProvider = FutureProvider.autoDispose<List<RestaurantModel>>((
+final restaurantsProvider = FutureProvider.autoDispose<List<Restaurant>>((
   ref,
 ) async {
-  final repo = ref.read(foodRepoProvider);
-  return repo.getRestaurants();
+  final useCase = ref.read(getRestaurantsProvider);
+  return useCase();
 });
 
 /// Pratos assíncronos
-final dishesProvider = FutureProvider.autoDispose<List<DishModel>>((ref) async {
-  final repo = ref.read(foodRepoProvider);
-  return repo.getDishes();
+final dishesProvider = FutureProvider.autoDispose<List<Dish>>((ref) async {
+  final useCase = ref.read(getDishesProvider);
+  return useCase();
 });
 
 /// Favoritos com SharedPreferences

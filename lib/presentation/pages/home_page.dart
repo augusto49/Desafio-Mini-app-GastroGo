@@ -16,80 +16,34 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final color = Theme.of(context).colorScheme.primary;
-
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'GastroGo',
-                        style: TextStyle(
-                          color: color,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      const Text(
-                        'Descubra sabores incríveis',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
-            // Tabs (Início / Favoritos)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Row(
-                children: [
-                  _buildTabButton('Início', 0, color),
-                  const SizedBox(width: 8),
-                  _buildTabButton('Favoritos', 1, color),
-                ],
-              ),
-            ),
-            Expanded(child: pages[_index]),
-          ],
+      backgroundColor: Colors.grey[50], // Lighter background for contrast
+      appBar: AppBar(
+        title: const Text(
+          'GastroGo',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        centerTitle: false,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.8),
       ),
-    );
-  }
-
-  Widget _buildTabButton(String text, int index, Color color) {
-    final bool selected = _index == index;
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => setState(() => _index = index),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          decoration: BoxDecoration(
-            color: selected ? color : Colors.grey.shade200,
-            borderRadius: BorderRadius.circular(12),
+      body: IndexedStack(index: _index, children: pages),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _index,
+        onDestinationSelected: (i) => setState(() => _index = i),
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
+            label: 'Início',
           ),
-          child: Center(
-            child: Text(
-              text,
-              style: TextStyle(
-                color: selected ? Colors.white : Colors.grey.shade600,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+          NavigationDestination(
+            icon: Icon(Icons.favorite_border),
+            selectedIcon: Icon(Icons.favorite),
+            label: 'Favoritos',
           ),
-        ),
+        ],
       ),
     );
   }

@@ -1,30 +1,55 @@
-import 'package:gastrogo/data/models/dish_model.dart';
-import 'package:gastrogo/data/models/restaurant_model.dart';
+import 'package:gastrogo/core/exceptions/exceptions.dart';
 import 'package:gastrogo/data/sources/fake_remote_source.dart';
+import 'package:gastrogo/domain/entities/dish.dart';
+import 'package:gastrogo/domain/entities/restaurant.dart';
 
 class FoodRepository {
   FoodRepository({required this.source});
   final FakeRemoteSource source;
 
-  Future<List<RestaurantModel>> getRestaurants() => source.fetchRestaurants();
-  Future<List<DishModel>> getDishes() => source.fetchDishes();
-
-  Future<List<DishModel>> getDishesByRestaurant(String restaurantId) async {
-    final dishes = await getDishes();
-    return dishes.where((d) => d.restaurant_id == restaurantId).toList();
+  Future<List<Restaurant>> getRestaurants() async {
+    try {
+      final models = await source.fetchRestaurants();
+      return models.map((e) => e.toEntity()).toList();
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
   }
 
-  /// Scroll infinito
-  Future<List<RestaurantModel>> getRestaurantsPaginated({
+  Future<List<Dish>> getDishes() async {
+    try {
+      final models = await source.fetchDishes();
+      return models.map((e) => e.toEntity()).toList();
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  Future<List<Dish>> getDishesByRestaurant(String restaurantId) async {
+    try {
+      final dishes = await getDishes();
+      return dishes.where((d) => d.restaurantId == restaurantId).toList();
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  /// Scroll infinito (Safe Pagination)
+  Future<List<Restaurant>> getRestaurantsPaginated({
     required int page,
     int limit = 8,
   }) async {
-    final all = await getRestaurants();
-    if (all.isEmpty) return [];
+    try {
+      final all = await getRestaurants();
+      if (all.isEmpty) return [];
 
-    final repeated = List.generate(page * limit, (i) => all[i % all.length]);
-    final start = (page - 1) * limit;
-    final end = start + limit;
-    return repeated.sublist(start, end);
+      final start = (page - 1) * limit;
+      if (start >= all.length) return [];
+
+      final end = start + limit > all.length ? all.length : start + limit;
+      return all.sublist(start, end);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
   }
 }

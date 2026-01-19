@@ -5,7 +5,7 @@
     "category": "Brasileira",
     "rating": 4.6,
     "distance_km": 2.3,
-    "image_url": "https://picsum.photos/seed/r1/800/400"
+    "image_url": "https://loremflickr.com/800/400/brazilian,food"
   },
   {
     "id": "r2",
@@ -13,7 +13,7 @@
     "category": "Italiana",
     "rating": 4.2,
     "distance_km": 1.1,
-    "image_url": "https://picsum.photos/seed/r2/800/400"
+    "image_url": "https://loremflickr.com/800/400/pasta,italian"
   },
   {
     "id": "r3",
@@ -21,7 +21,7 @@
     "category": "Saudável",
     "rating": 4.8,
     "distance_km": 3.0,
-    "image_url": "https://picsum.photos/seed/r3/800/400"
+    "image_url": "https://loremflickr.com/800/400/salad,healthy"
   },
   {
     "id": "r4",
@@ -29,7 +29,7 @@
     "category": "Japonesa",
     "rating": 4.4,
     "distance_km": 0.9,
-    "image_url": "https://picsum.photos/seed/r4/800/400"
+    "image_url": "https://loremflickr.com/800/400/sushi,japanese"
   },
   {
     "id": "r5",
@@ -37,7 +37,7 @@
     "category": "Mexicana",
     "rating": 4.1,
     "distance_km": 5.2,
-    "image_url": "https://picsum.photos/seed/r5/800/400"
+    "image_url": "https://loremflickr.com/800/400/tacos,mexican"
   },
   {
     "id": "r6",
@@ -45,7 +45,7 @@
     "category": "Francesa",
     "rating": 4.7,
     "distance_km": 2.9,
-    "image_url": "https://picsum.photos/seed/r6/800/400"
+    "image_url": "https://loremflickr.com/800/400/french,cuisine"
   },
   {
     "id": "r7",
@@ -53,7 +53,7 @@
     "category": "Brasileira",
     "rating": 4.5,
     "distance_km": 4.1,
-    "image_url": "https://picsum.photos/seed/r7/800/400"
+    "image_url": "https://loremflickr.com/800/400/barbecue,meat"
   },
   {
     "id": "r8",
@@ -61,6 +61,6 @@
     "category": "Árabe",
     "rating": 4.3,
     "distance_km": 3.5,
-    "image_url": "https://picsum.photos/seed/r8/800/400"
+    "image_url": "https://loremflickr.com/800/400/arabic,food"
   }
 ]

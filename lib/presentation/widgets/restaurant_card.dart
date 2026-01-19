@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gastrogo/data/models/restaurant_model.dart';
-import 'package:gastrogo/presentation/providers/providers.dart';
+import 'package:gastrogo/domain/entities/restaurant.dart';
+import 'package:gastrogo/presentation/widgets/common/app_network_image.dart';
+import 'package:gastrogo/presentation/widgets/common/favorite_button.dart';
 
 class RestaurantCard extends ConsumerWidget {
   const RestaurantCard({
@@ -11,121 +12,111 @@ class RestaurantCard extends ConsumerWidget {
     this.heroTagSuffix,
     super.key,
   });
-  final RestaurantModel restaurant;
+  final Restaurant restaurant;
   final VoidCallback? onTap;
   final String? heroTagSuffix;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favAsync = ref.watch(favoritesProvider);
     final colorScheme = Theme.of(context).colorScheme;
     final tag = 'restaurant_${restaurant.id}${heroTagSuffix ?? ''}';
 
-    return Card(
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            offset: const Offset(0, 4),
+            blurRadius: 10,
+          ),
+        ],
+      ),
       clipBehavior: Clip.hardEdge,
-      child: InkWell(
-        onTap: onTap,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // --- Imagem ---
-            Stack(
-              children: [
-                Hero(
-                  tag: tag,
-                  child: CachedNetworkImage(
-                    imageUrl: restaurant.image_url,
-                    height: 160,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    placeholder:
-                        (_, __) => Container(
-                          height: 160,
-                          color: Colors.grey[200],
-                          child: const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        ),
-                    errorWidget:
-                        (_, __, ___) => Container(
-                          height: 160,
-                          color: Colors.grey[300],
-                          child: const Center(child: Icon(Icons.broken_image)),
-                        ),
-                  ),
-                ),
-                Positioned(
-                  right: 12,
-                  top: 12,
-                  child: favAsync.when(
-                    data: (set) {
-                      final isFav = set.contains(restaurant.id);
-                      return CircleAvatar(
-                        backgroundColor: Colors.white.withValues(alpha: 0.9),
-                        child: IconButton(
-                          icon: Icon(
-                            isFav ? Icons.favorite : Icons.favorite_border,
-                            color:
-                                isFav ? colorScheme.primary : Colors.grey[700],
-                            size: 18,
-                          ),
-                          onPressed:
-                              () => ref
-                                  .read(favoritesProvider.notifier)
-                                  .toggleFavorite(restaurant.id),
-                        ),
-                      );
-                    },
-                    loading:
-                        () => const CircleAvatar(
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        ),
-                    error:
-                        (_, __) => CircleAvatar(
-                          backgroundColor: Colors.white.withValues(alpha: 0.9),
-                          child: const Icon(Icons.favorite_border, size: 18),
-                        ),
-                  ),
-                ),
-              ],
-            ),
-
-            // --- Detalhes ---
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // --- Imagem ---
+              Stack(
                 children: [
-                  Text(
-                    restaurant.name,
-                    style: Theme.of(context).textTheme.titleMedium,
+                  Hero(
+                    tag: tag,
+                    child: AppNetworkImage(
+                      imageUrl: restaurant.imageUrl,
+                      height: 180,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  const SizedBox(height: 6),
-                  Row(
-                    children: [
-                      Icon(Icons.star, size: 16, color: colorScheme.primary),
-                      const SizedBox(width: 4),
-                      Text(
-                        restaurant.rating.toStringAsFixed(1),
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      const SizedBox(width: 16),
-                      Icon(
-                        Icons.location_on,
-                        size: 16,
-                        color: colorScheme.secondary,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '${restaurant.distance_km} km',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
+                  Positioned(
+                    right: 12,
+                    top: 12,
+                    child: FavoriteButton(
+                      restaurantId: restaurant.id,
+                      backgroundColor: Colors.white,
+                      activeColor: colorScheme.primary,
+                      inactiveColor: Colors.grey[500]!,
+                      loadingColor: colorScheme.primary,
+                      size: 20,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-            ),
-          ],
+
+              // --- Detalhes ---
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      restaurant.name,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Icon(Icons.star_rounded, size: 20, color: Colors.amber),
+                        const SizedBox(width: 4),
+                        Text(
+                          restaurant.rating.toStringAsFixed(1),
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(width: 8),
+                        Text('•', style: TextStyle(color: Colors.grey[400])),
+                        const SizedBox(width: 8),
+                        Icon(
+                          Icons.location_on_outlined,
+                          size: 16,
+                          color: Colors.grey[600],
+                        ),
+                        const SizedBox(width: 2),
+                        Text(
+                          '${restaurant.distanceKm} km',
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -5,7 +5,7 @@
     "name": "Feijoada",
     "price": 39.9,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d1/800/400"
+    "image_url": "https://loremflickr.com/800/400/feijoada,food"
   },
   {
     "id": "d2",
@@ -13,7 +13,7 @@
     "name": "Tutu com Torresmo",
     "price": 28.5,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d2/800/400"
+    "image_url": "https://loremflickr.com/800/400/beans,food"
   },
   {
     "id": "d3",
@@ -21,7 +21,7 @@
     "name": "Couve Refogada",
     "price": 9.9,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d3/800/400"
+    "image_url": "https://loremflickr.com/800/400/kale,greens"
   },
 
   {
@@ -30,7 +30,7 @@
     "name": "Spaghetti Carbonara",
     "price": 32.0,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d4/800/400"
+    "image_url": "https://loremflickr.com/800/400/carbonara,pasta"
   },
   {
     "id": "d5",
@@ -38,7 +38,7 @@
     "name": "Penne Pomodoro",
     "price": 25.0,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d5/800/400"
+    "image_url": "https://loremflickr.com/800/400/pasta,tomato"
   },
   {
     "id": "d6",
@@ -46,7 +46,7 @@
     "name": "Tiramisu",
     "price": 18.0,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d6/800/400"
+    "image_url": "https://loremflickr.com/800/400/tiramisu,dessert"
   },
 
   {
@@ -55,7 +55,7 @@
     "name": "Salada Power Bowl",
     "price": 27.5,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d7/800/400"
+    "image_url": "https://loremflickr.com/800/400/salad,bowl"
   },
   {
     "id": "d8",
@@ -63,7 +63,7 @@
     "name": "Wrap de Grão-de-bico",
     "price": 22.0,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d8/800/400"
+    "image_url": "https://loremflickr.com/800/400/wrap,sandwich"
   },
   {
     "id": "d9",
@@ -71,7 +71,7 @@
     "name": "Smoothie Verde",
     "price": 12.0,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d9/800/400"
+    "image_url": "https://loremflickr.com/800/400/green,smoothie"
   },
 
   {
@@ -80,7 +80,7 @@
     "name": "Sushi Combo",
     "price": 59.9,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d10/800/400"
+    "image_url": "https://loremflickr.com/800/400/sushi"
   },
   {
     "id": "d11",
@@ -88,7 +88,7 @@
     "name": "Ramen Vegetal",
     "price": 34.5,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d11/800/400"
+    "image_url": "https://loremflickr.com/800/400/ramen"
   },
   {
     "id": "d12",
@@ -96,7 +96,7 @@
     "name": "Tempurá",
     "price": 29.9,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d12/800/400"
+    "image_url": "https://loremflickr.com/800/400/tempura,food"
   },
 
   {
@@ -105,7 +105,7 @@
     "name": "Tacos de Carnitas",
     "price": 21.9,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d13/800/400"
+    "image_url": "https://loremflickr.com/800/400/tacos,pork"
   },
   {
     "id": "d14",
@@ -113,7 +113,7 @@
     "name": "Burrito Vegano",
     "price": 24.0,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d14/800/400"
+    "image_url": "https://loremflickr.com/800/400/burrito"
   },
   {
     "id": "d15",
@@ -121,7 +121,7 @@
     "name": "Guacamole",
     "price": 14.0,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d15/800/400"
+    "image_url": "https://loremflickr.com/800/400/guacamole"
   },
   {
     "id": "d16",
@@ -129,7 +129,7 @@
     "name": "Nachos Supreme",
     "price": 19.0,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d16/800/400"
+    "image_url": "https://loremflickr.com/800/400/nachos"
   },
 
   {
@@ -138,7 +138,7 @@
     "name": "Confit de Pato",
     "price": 78.0,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d17/800/400"
+    "image_url": "https://loremflickr.com/800/400/duck,food"
   },
   {
     "id": "d18",
@@ -146,7 +146,7 @@
     "name": "Quiche de Alho-poró",
     "price": 29.0,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d18/800/400"
+    "image_url": "https://loremflickr.com/800/400/quiche,food"
   },
   {
     "id": "d19",
@@ -154,7 +154,7 @@
     "name": "Sopa de Legumes",
     "price": 16.0,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d19/800/400"
+    "image_url": "https://loremflickr.com/800/400/vegetable,soup"
   },
   {
     "id": "d20",
@@ -162,7 +162,7 @@
     "name": "Crème Brûlée",
     "price": 22.0,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d20/800/400"
+    "image_url": "https://loremflickr.com/800/400/cremebrulee"
   },
 
   {
@@ -171,7 +171,7 @@
     "name": "Picanha na Brasa",
     "price": 59.9,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d21/800/400"
+    "image_url": "https://loremflickr.com/800/400/steak,bbq"
   },
   {
     "id": "d22",
@@ -179,7 +179,7 @@
     "name": "Fraldinha ao Alho",
     "price": 54.0,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d22/800/400"
+    "image_url": "https://loremflickr.com/800/400/steak,grilled"
   },
   {
     "id": "d23",
@@ -187,7 +187,7 @@
     "name": "Vinagrete de Legumes",
     "price": 8.5,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d23/800/400"
+    "image_url": "https://loremflickr.com/800/400/salsa,food"
   },
   {
     "id": "d24",
@@ -195,7 +195,7 @@
     "name": "Queijo Coalho",
     "price": 12.0,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d24/800/400"
+    "image_url": "https://loremflickr.com/800/400/cheese,grilled"
   },
 
   {
@@ -204,7 +204,7 @@
     "name": "Kibe Frito",
     "price": 18.0,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d25/800/400"
+    "image_url": "https://loremflickr.com/800/400/kibbeh,food"
   },
   {
     "id": "d26",
@@ -212,7 +212,7 @@
     "name": "Falafel",
     "price": 16.5,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d26/800/400"
+    "image_url": "https://loremflickr.com/800/400/falafel"
   },
   {
     "id": "d27",
@@ -220,7 +220,7 @@
     "name": "Tabule",
     "price": 14.0,
     "vegan": true,
-    "image_url": "https://picsum.photos/seed/d27/800/400"
+    "image_url": "https://loremflickr.com/800/400/tabbouleh,salad"
   },
   {
     "id": "d28",
@@ -228,6 +228,6 @@
     "name": "Charuto de Uva",
     "price": 17.0,
     "vegan": false,
-    "image_url": "https://picsum.photos/seed/d28/800/400"
+    "image_url": "https://loremflickr.com/800/400/dolma,food"
   }
 ]

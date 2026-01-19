@@ -13,127 +13,196 @@ class FavoritesPage extends ConsumerWidget {
     final favsAsync = ref.watch(favoritesProvider);
     final restaurantsAsync = ref.watch(restaurantsProvider);
     final dishesAsync = ref.watch(dishesProvider);
+    final colorScheme = Theme.of(context).colorScheme;
 
-    return favsAsync.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, st) => Center(child: Text('Erro: $e')),
-      data: (favs) {
-        if (favs.isEmpty) {
-          return const Center(child: Text('Nenhum favorito ainda.'));
-        }
-
-        return SingleChildScrollView(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // --- Restaurantes Favoritos ---
-              const Text(
-                'Restaurantes Favoritos',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    return Scaffold(
+      backgroundColor: Colors.grey[50],
+      body: favsAsync.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (e, st) => Center(child: Text('Erro: $e')),
+        data: (favs) {
+          if (favs.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.favorite_border,
+                    size: 64,
+                    color: Colors.grey[300],
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Nenhum favorito ainda',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.grey[500],
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 8),
-              restaurantsAsync.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (_, __) => const SizedBox(),
-                data: (restaurants) {
-                  final favRestaurants =
-                      restaurants.where((r) => favs.contains(r.id)).toList();
+            );
+          }
 
-                  if (favRestaurants.isEmpty) {
-                    return const Text('Nenhum restaurante favoritado.');
-                  }
+          return SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // --- Restaurantes Favoritos ---
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    'Restaurantes',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: colorScheme.primary.withOpacity(0.9),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                restaurantsAsync.when(
+                  loading:
+                      () => const Center(child: CircularProgressIndicator()),
+                  error: (_, __) => const SizedBox(),
+                  data: (restaurants) {
+                    final favRestaurants =
+                        restaurants.where((r) => favs.contains(r.id)).toList();
 
-                  return Column(
-                    children:
-                        favRestaurants.map((r) {
-                          return RestaurantCard(
+                    if (favRestaurants.isEmpty) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                          'Nenhum restaurante favoritado.',
+                          style: TextStyle(color: Colors.grey[500]),
+                        ),
+                      );
+                    }
+
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      itemCount: favRestaurants.length,
+                      itemBuilder: (context, index) {
+                        final r = favRestaurants[index];
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 12),
+                          child: RestaurantCard(
                             restaurant: r,
+                            heroTagSuffix: 'fav',
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder:
-                                      (_) =>
-                                          RestaurantDetailPage(restaurant: r),
+                                      (_) => RestaurantDetailPage(
+                                        restaurant: r,
+                                        heroTagSuffix: 'fav',
+                                      ),
                                 ),
                               );
                             },
-                          );
-                        }).toList(),
-                  );
-                },
-              ),
-              const SizedBox(height: 20),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(height: 32),
 
-              // --- Pratos Favoritos ---
-              const Text(
-                'Pratos Favoritos',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              dishesAsync.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (_, __) => const SizedBox(),
-                data: (dishes) {
-                  final favDishes =
-                      dishes.where((d) => favs.contains(d.id)).toList();
+                // --- Pratos Favoritos ---
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    'Pratos',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: colorScheme.primary.withOpacity(0.9),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                dishesAsync.when(
+                  loading:
+                      () => const Center(child: CircularProgressIndicator()),
+                  error: (_, __) => const SizedBox(),
+                  data: (dishes) {
+                    final favDishes =
+                        dishes.where((d) => favs.contains(d.id)).toList();
 
-                  if (favDishes.isEmpty) {
-                    return const Text('Nenhum prato favoritado.');
-                  }
-
-                  return restaurantsAsync.when(
-                    loading:
-                        () => const Center(child: CircularProgressIndicator()),
-                    error:
-                        (_, __) => Column(
-                          children:
-                              favDishes.map((d) {
-                                return DishTile(dish: d);
-                              }).toList(),
+                    if (favDishes.isEmpty) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                          'Nenhum prato favoritado.',
+                          style: TextStyle(color: Colors.grey[500]),
                         ),
-                    data: (restaurants) {
-                      return Column(
-                        children:
-                            favDishes.map((d) {
-                              return DishTile(
-                                dish: d,
-                                onTap: () {
-                                  try {
-                                    final rest = restaurants.firstWhere(
-                                      (r) => r.id == d.restaurant_id,
-                                    );
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder:
-                                            (_) => RestaurantDetailPage(
-                                              restaurant: rest,
-                                            ),
-                                      ),
-                                    );
-                                  } catch (e) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          'Restaurante do prato não encontrado.',
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                },
-                              );
-                            }).toList(),
                       );
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
-        );
-      },
+                    }
+
+                    return restaurantsAsync.when(
+                      loading:
+                          () =>
+                              const Center(child: CircularProgressIndicator()),
+                      error:
+                          (_, __) => Column(
+                            children:
+                                favDishes
+                                    .map((d) => DishTile(dish: d))
+                                    .toList(),
+                          ),
+                      data: (restaurants) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Column(
+                            children:
+                                favDishes.map((d) {
+                                  return DishTile(
+                                    dish: d,
+                                    onTap: () {
+                                      try {
+                                        final rest = restaurants.firstWhere(
+                                          (r) => r.id == d.restaurantId,
+                                        );
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder:
+                                                (_) => RestaurantDetailPage(
+                                                  restaurant: rest,
+                                                ),
+                                          ),
+                                        );
+                                      } catch (e) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Restaurante do prato não encontrado.',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  );
+                                }).toList(),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(height: 24),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
